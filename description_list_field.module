@@ -1,0 +1,8 @@
+<?php
+
+/**
+ * @file
+ * The Description List Field module.
+ */
+
+declare(strict_types = 1);
