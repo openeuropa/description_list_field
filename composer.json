@@ -18,7 +18,7 @@
         "guzzlehttp/guzzle": "~6.3",
         "openeuropa/code-review": "~1.0.0-beta2",
         "openeuropa/drupal-core-require-dev": "^8.7",
-        "openeuropa/task-runner": "~1.0@beta",,
+        "openeuropa/task-runner": "~1.0@beta",
         "phpunit/phpunit": "~6.0"
     },
     "scripts": {
