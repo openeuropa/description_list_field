@@ -8,8 +8,12 @@
 {% if items %}
   <dl>
     {% for item in items %}
-      <dt>{{ item.term }}</dt>
-      <dd>{{ item.description }}</dd>
+      {% if item.term %}
+        <dt>{{ item.term }}</dt>
+      {% endif %}
+      {% if item.description %}
+        <dd>{{ item.description }}</dd>
+      {% endif %}
     {% endfor %}
   </dl>
 {% endif %}
