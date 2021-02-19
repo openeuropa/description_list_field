@@ -42,6 +42,7 @@ class DescriptionListFieldWidgetTest extends BrowserTestBase {
       'field_name' => 'description_list',
       'entity_type' => 'node',
       'type' => 'description_list_field',
+      'cardinality' => -1,
     ])->save();
 
     FieldConfig::create([
@@ -69,24 +70,33 @@ class DescriptionListFieldWidgetTest extends BrowserTestBase {
     $this->drupalLogin($user);
 
     $this->drupalGet('/node/add/page');
-
-    $values = [
-      'title[0][value]' => 'My page',
-      'description_list[0][term]' => 'Term 1',
-      'description_list[0][description][value]' => 'Description 1',
-    ];
-
-    $this->drupalPostForm('/node/add/page', $values, 'Save');
+    // Fill in first item.
+    $this->getSession()->getPage()->fillField('title[0][value]', 'My page');
+    $this->getSession()->getPage()->fillField('description_list[0][term]', 'Term 1');
+    $this->getSession()->getPage()->fillField('description_list[0][description][value]', 'Description 1');
+    // Add another item.
+    $this->getSession()->getPage()->pressButton('Add another item');
+    $this->getSession()->getPage()->fillField('description_list[1][term]', 'Term 2');
+    $this->getSession()->getPage()->fillField('description_list[1][description][value]', 'Description 2');
+    $this->getSession()->getPage()->pressButton('Save');
+    // Assert page was correctly saved.
     $this->assertSession()->pageTextContains('Page My page has been created');
 
     /** @var \Drupal\node\NodeInterface $node */
     $node = $this->container->get('entity_type.manager')->getStorage('node')->load(1);
     $expected_values = [
-      'term' => 'Term 1',
-      'description' => 'Description 1',
-      'format' => 'plain_text',
+      [
+        'term' => 'Term 1',
+        'description' => 'Description 1',
+        'format' => 'plain_text',
+      ],
+      [
+        'term' => 'Term 2',
+        'description' => 'Description 2',
+        'format' => 'plain_text',
+      ],
     ];
-    $this->assertEquals($expected_values, $node->get('description_list')->first()->getValue());
+    $this->assertEquals($expected_values, $node->get('description_list')->getValue());
   }
 
 }
