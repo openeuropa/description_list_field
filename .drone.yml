@@ -23,7 +23,7 @@ services:
     environment:
       - MYSQL_ALLOW_EMPTY_PASSWORD=yes
   selenium:
-    image: registry.fpfis.eu/fpfis/selenium:standalone-chrome-3.11
+    image: registry.fpfis.eu/fpfis/selenium:standalone-chrome-3.141.59-oxygen
     environment:
       - DISPLAY=:99
       - SE_OPTS=-debug
