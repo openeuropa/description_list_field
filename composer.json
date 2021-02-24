@@ -16,6 +16,7 @@
         "drupal/drupal-extension": "~4.0",
         "drush/drush": "~9.0@stable",
         "guzzlehttp/guzzle": "~6.3",
+        "nikic/php-parser": "~4.10.4",
         "openeuropa/code-review": "~1.5",
         "openeuropa/drupal-core-require-dev": "^8.8",
         "openeuropa/task-runner": "~1.0-beta5",
