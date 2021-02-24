@@ -6,3 +6,16 @@
  */
 
 declare(strict_types = 1);
+
+/**
+ * Implements hook_theme().
+ */
+function description_list_field_theme() {
+  return [
+    'description_list' => [
+      'variables' => [
+        'items' => [],
+      ],
+    ],
+  ];
+}

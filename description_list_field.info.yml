@@ -3,4 +3,4 @@ description: Contains the Description list field type.
 package: OpenEuropa
 
 type: module
-core: 8.x
+core_version_requirement: ^8 || ^9
