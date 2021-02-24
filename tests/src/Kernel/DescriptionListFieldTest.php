@@ -8,6 +8,7 @@ use Drupal\field\Entity\FieldConfig;
 use Drupal\field\Entity\FieldStorageConfig;
 use Drupal\filter\Entity\FilterFormat;
 use Drupal\KernelTests\KernelTestBase;
+use Symfony\Component\DomCrawler\Crawler;
 
 /**
  * Tests the Description list field type and formatter.
@@ -118,14 +119,17 @@ class DescriptionListFieldTest extends KernelTestBase {
     $builder = $this->container->get('entity_type.manager')->getViewBuilder('node');
     $build = $builder->viewField($node->get('description_list'));
     $output = $this->container->get('renderer')->renderRoot($build);
-    $this->assertContains('<dl>', (string) $output);
+    $crawler = new Crawler((string) $output);
+
+    $this->assertCount(1, $crawler->filter('dl'));
+    $this->assertCount(3, $crawler->filter('dt'));
+    $this->assertCount(3, $crawler->filter('dd'));
     $this->assertContains('<dt>Term 1</dt>', (string) $output);
     $this->assertContains('<dd><p>Description 1</p>' . "\n" . '</dd>', (string) $output);
     $this->assertContains('<dt>Term 2</dt>', (string) $output);
     $this->assertContains('<dd><h2>Description 2</h2>' . "\n" . '</dd>', (string) $output);
     $this->assertContains('<dt>Term 3</dt>', (string) $output);
     $this->assertContains('<dd><h3>Description 4</h3>' . "\n" . '</dd>', (string) $output);
-    $this->assertContains('</dl>', (string) $output);
   }
 
 }

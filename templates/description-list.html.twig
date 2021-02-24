@@ -8,10 +8,10 @@
 {% if items %}
   <dl>
     {% for item in items %}
-      {% if item.term %}
+      {% if item.term['#plain_text'] %}
         <dt>{{ item.term }}</dt>
       {% endif %}
-      {% if item.description %}
+      {% if item.description['#text'] %}
         <dd>{{ item.description }}</dd>
       {% endif %}
     {% endfor %}
