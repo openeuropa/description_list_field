@@ -4,11 +4,9 @@ declare(strict_types = 1);
 
 namespace Drupal\description_list_field\Plugin\Field\FieldWidget;
 
-use Drupal\Component\Utility\NestedArray;
 use Drupal\Core\Field\FieldItemListInterface;
 use Drupal\Core\Field\WidgetBase;
 use Drupal\Core\Form\FormStateInterface;
-use Symfony\Component\Validator\ConstraintViolationInterface;
 
 /**
  * Plugin implementation of the 'Description list widget' widget.
@@ -58,16 +56,6 @@ class DescriptionListFieldWidget extends WidgetBase {
     }
 
     return $values;
-  }
-
-  /**
-   * {@inheritdoc}
-   */
-  public function errorElement(array $element, ConstraintViolationInterface $violation, array $form, FormStateInterface $form_state) {
-    if (!empty($violation->arrayPropertyPath) && $sub_element = NestedArray::getValue($element, $violation->arrayPropertyPath)) {
-      return $sub_element;
-    }
-    return $element;
   }
 
 }

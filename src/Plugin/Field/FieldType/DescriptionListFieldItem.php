@@ -37,7 +37,7 @@ class DescriptionListFieldItem extends FieldItemBase {
           'size' => 'big',
         ],
         'format' => [
-          'type' => 'varchar_ascii',
+          'type' => 'varchar',
           'length' => 255,
         ],
       ],
@@ -80,22 +80,6 @@ class DescriptionListFieldItem extends FieldItemBase {
       ->setInternal(FALSE);
 
     return $properties;
-  }
-
-  /**
-   * {@inheritdoc}
-   */
-  public function applyDefaultValue($notify = TRUE) {
-    $this->setValue(
-      [
-        'term' => '',
-        'description' => '',
-        'format' => filter_fallback_format(),
-      ],
-      $notify
-    );
-
-    return $this;
   }
 
 }
