@@ -31,7 +31,7 @@ class DescriptionListFieldWidget extends WidgetBase {
       '#default_value' => $items[$delta]->term ?? NULL,
       '#size' => 60,
       '#maxlength' => 255,
-      '#required' => FALSE,
+      '#required' => $element['#required'],
     ];
     $element['description'] = [
       '#type' => 'text_format',
@@ -40,7 +40,7 @@ class DescriptionListFieldWidget extends WidgetBase {
       '#default_value' => $items[$delta]->description ?? NULL,
       '#format' => isset($items[$delta]->format) ? $items[$delta]->format : filter_fallback_format(),
       '#rows' => 5,
-      '#required' => FALSE,
+      '#required' => $element['#required'],
     ];
 
     return $element;

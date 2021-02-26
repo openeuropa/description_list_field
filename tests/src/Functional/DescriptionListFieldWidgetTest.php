@@ -49,6 +49,7 @@ class DescriptionListFieldWidgetTest extends BrowserTestBase {
       'entity_type' => 'node',
       'field_name' => 'description_list',
       'bundle' => 'page',
+      'required' => TRUE,
     ])->save();
 
     $entity_form_display = EntityFormDisplay::collectRenderDisplay(Node::create(['type' => 'page']), 'default');
@@ -70,8 +71,19 @@ class DescriptionListFieldWidgetTest extends BrowserTestBase {
     $this->drupalLogin($user);
 
     $this->drupalGet('/node/add/page');
-    // Fill in first item.
     $this->getSession()->getPage()->fillField('title[0][value]', 'My page');
+    // Assert error messages for required fields.
+    $this->getSession()->getPage()->pressButton('Save');
+    $this->assertSession()->pageTextContainsOnce('Term field is required.');
+    $this->assertSession()->pageTextContainsOnce('Description field is required.');
+    $this->getSession()->getPage()->fillField('description_list[0][term]', 'Term 1');
+    $this->getSession()->getPage()->pressButton('Save');
+    $this->assertSession()->pageTextContainsOnce('Description field is required.');
+    $this->getSession()->getPage()->fillField('description_list[0][term]', '');
+    $this->getSession()->getPage()->fillField('description_list[0][description][value]', 'Description 1');
+    $this->getSession()->getPage()->pressButton('Save');
+    $this->assertSession()->pageTextContainsOnce('Term field is required.');
+    // Fill in first item.
     $this->getSession()->getPage()->fillField('description_list[0][term]', 'Term 1');
     $this->getSession()->getPage()->fillField('description_list[0][description][value]', 'Description 1');
     // Add another item.
@@ -97,6 +109,16 @@ class DescriptionListFieldWidgetTest extends BrowserTestBase {
       ],
     ];
     $this->assertEquals($expected_values, $node->get('description_list')->getValue());
+
+    // Set field optional and assert the node can be saved without providing
+    // description list items.
+    $field_config = FieldConfig::load('node.page.description_list');
+    $field_config->setRequired(FALSE);
+    $field_config->save();
+    $this->drupalGet('/node/add/page');
+    $this->getSession()->getPage()->fillField('title[0][value]', 'My page with optional description list');
+    $this->getSession()->getPage()->pressButton('Save');
+    $this->assertSession()->pageTextContains('Page My page with optional description list has been created');
   }
 
 }
