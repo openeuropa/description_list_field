@@ -19,3 +19,14 @@ function description_list_field_theme() {
     ],
   ];
 }
+
+/**
+ * Implements hook_field_info_alter().
+ */
+function description_list_field_field_info_alter(&$info) {
+  if (isset($info['description_list_field'])) {
+    // For the description list field we need to use our own processor. This is
+    // only used if TMGMT is installed.
+    $info['description_list_field']['tmgmt_field_processor'] = 'Drupal\description_list_field\TmgmtDescriptionListFieldProcessor';
+  }
+}
