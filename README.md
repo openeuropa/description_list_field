@@ -12,6 +12,28 @@ You can build the development site by running the following steps:
 ```bash
 composer install
 ```
+This will build a fully functional Drupal test site in the `./build` directory that can be used to develop and showcase
+the module's functionality.
+
+Before setting up and installing the site make sure to customize default configuration values by copying [runner.yml.dist](runner.yml.dist)
+to `./runner.yml` and overriding relevant properties.
+
+This will also:
+- Symlink the theme in  `./build/modules/custom/oe_webtools` so that it's available for the test site
+- Setup Drush and Drupal's settings using values from `./runner.yml.dist`. This includes adding parameters for EULogin
+- Setup PHPUnit and Behat configuration files using values from `./runner.yml.dist`
+
+**Please note:** project files and directories are symlinked within the test site by using the
+[OpenEuropa Task Runner's Drupal project symlink](https://github.com/openeuropa/task-runner-drupal-project-symlink) command.
+
+If you add a new file or directory in the root of the project, you need to re-run `drupal:site-setup` in order to make
+sure they are be correctly symlinked.
+
+If you don't want to re-run a full site setup for that, you can simply run:
+
+```
+./vendor/bin/run drupal:symlink-project
+```
 
 A post command hook (`drupal:site-setup`) is triggered automatically after `composer install`.
 It will make sure that the necessary symlinks are properly setup in the development site.
