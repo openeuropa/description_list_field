@@ -124,12 +124,12 @@ class DescriptionListFieldTest extends KernelTestBase {
     $this->assertCount(1, $crawler->filter('dl'));
     $this->assertCount(3, $crawler->filter('dt'));
     $this->assertCount(3, $crawler->filter('dd'));
-    $this->assertContains('<dt>Term 1</dt>', (string) $output);
-    $this->assertContains('<dd><p>Description 1</p>' . "\n" . '</dd>', (string) $output);
-    $this->assertContains('<dt>Term 2</dt>', (string) $output);
-    $this->assertContains('<dd><h2>Description 2</h2>' . "\n" . '</dd>', (string) $output);
-    $this->assertContains('<dt>Term 3</dt>', (string) $output);
-    $this->assertContains('<dd><h3>Description 4</h3>' . "\n" . '</dd>', (string) $output);
+    $this->assertStringContainsString('<dt>Term 1</dt>', (string) $output);
+    $this->assertStringContainsString('<dd><p>Description 1</p>' . "\n" . '</dd>', (string) $output);
+    $this->assertStringContainsString('<dt>Term 2</dt>', (string) $output);
+    $this->assertStringContainsString('<dd><h2>Description 2</h2>' . "\n" . '</dd>', (string) $output);
+    $this->assertStringContainsString('<dt>Term 3</dt>', (string) $output);
+    $this->assertStringContainsString('<dd><h3>Description 4</h3>' . "\n" . '</dd>', (string) $output);
   }
 
 }
