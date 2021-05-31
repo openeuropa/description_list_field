@@ -21,7 +21,7 @@
         "openeuropa/code-review": "~1.6",
         "openeuropa/drupal-core-require-dev": "^8.9 || ^9",
         "openeuropa/task-runner-drupal-project-symlink": "^1.0",
-        "phpspec/prophecy-phpunit": "^2",
+        "phpspec/prophecy-phpunit": "^1 || ^2",
         "phpunit/phpunit": "^6.5 || ^7 || ^8 || ^9"
     },
     "scripts": {
