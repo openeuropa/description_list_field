@@ -15,7 +15,7 @@
         "drupal/config_devel": "~1.2",
         "drupal/drupal-extension": "~4.0",
         "drupal/tmgmt": "1.11",
-        "guzzlehttp/guzzle": "~6.3",
+        "drush/drush": "~10.3",
         "nikic/php-parser": "~4.10.4",
         "openeuropa/code-review": "~1.6",
         "openeuropa/drupal-core-require-dev": "^8.9 || ^9",
