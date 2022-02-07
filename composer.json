@@ -1,5 +1,5 @@
 {
-    "name": "openeuropa/description_list_field",
+    "name": "drupal/description_list_field",
     "description": "Drupal module that contains the Description list field type.",
     "type": "drupal-module",
     "license": "EUPL-1.2",
