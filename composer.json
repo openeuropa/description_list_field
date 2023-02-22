@@ -15,13 +15,11 @@
         "drupal/core-composer-scaffold": "^9.4 || ^10",
         "drupal/core-dev": "^9.4 || ^10",
         "drupal/drupal-extension": "~4.0",
-        "drupal/tmgmt": "1.11",
-        "drush/drush": "~10.3",
-        "nikic/php-parser": "~4.10.4",
-        "openeuropa/code-review": "~2.0",
-        "openeuropa/task-runner-drupal-project-symlink": "^1.0.0-beta5",
-        "phpspec/prophecy-phpunit": "^2",
-        "symfony/dom-crawler": "^4.4.12"
+        "drupal/tmgmt": "^1.14",
+        "drush/drush": "^11.1",
+        "openeuropa/code-review": "^2.0.0-alpha6",
+        "openeuropa/task-runner-drupal-project-symlink": "^1.0-beta6",
+        "phpspec/prophecy-phpunit": "^2"
     },
     "scripts": {
         "drupal-scaffold": "DrupalComposer\\DrupalScaffold\\Plugin::scaffold",
@@ -57,10 +55,7 @@
             "locations": {
                 "web-root": "./build"
             }
-        },
-        "_readme": [
-            "Explicit minimum version requirement for symfony/dom-crawler due to its lower versions using the deprecated function libxml_disable_entity_loader() in PHP8."
-        ]
+        }
     },
     "config": {
         "sort-packages": true,
