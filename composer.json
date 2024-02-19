@@ -6,18 +6,19 @@
     "minimum-stability": "dev",
     "prefer-stable": true,
     "require": {
-        "php": ">=8.0",
-        "drupal/core": "^9.4 || ^10"
+        "php": ">=8.1",
+        "drupal/core": "^10"
     },
     "require-dev": {
         "composer/installers": "~1.5",
-        "drupal/core-composer-scaffold": "^9.4 || ^10",
-        "drupal/core-dev": "^9.4 || ^10",
+        "drupal/core-composer-scaffold": "^10",
+        "drupal/core-dev": "^10",
         "drupal/tmgmt": "^1.14",
-        "drush/drush": "^11.1",
+        "drush/drush": "^12",
         "openeuropa/code-review": "^2.0.0-alpha6",
         "openeuropa/task-runner-drupal-project-symlink": "^1.0-beta6",
-        "phpspec/prophecy-phpunit": "^2"
+        "phpspec/prophecy-phpunit": "^2",
+        "nikic/php-parser": "^4.18"
     },
     "scripts": {
         "drupal-scaffold": "DrupalComposer\\DrupalScaffold\\Plugin::scaffold",
@@ -53,7 +54,10 @@
             "locations": {
                 "web-root": "./build"
             }
-        }
+        },
+        "_readme": [
+            "Explicit requirement of nikic/php-parser as ^5.0 generates GrumPHP Parser issues."
+        ]
     },
     "config": {
         "sort-packages": true,
