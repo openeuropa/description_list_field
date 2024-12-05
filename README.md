@@ -1,3 +1,7 @@
+# :warning: This repository is archived
+
+Development has moved to [drupal.org](https://www.drupal.org/project/description_list_field).
+
 # Description List Field
 
 The Description List Field module provides the Description list field type, as well as a default widget and formatter.
